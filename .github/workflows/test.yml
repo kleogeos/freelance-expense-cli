@@ -1,0 +1,56 @@
+name: Test CLI
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Add expenses and verify report totals
+        run: |
+          rm -f expenses.json
+          python expense.py add 49.99 software --date 2026-09-01
+          python expense.py add 120 equipment --date 2026-09-15
+          python expense.py add 15.50 software --date 2026-10-01
+          OUT=$(python expense.py report --json)
+          echo "$OUT"
+          echo "$OUT" | python -c "
+          import json, sys
+          r = json.load(sys.stdin)
+          assert r['count'] == 3, r
+          assert r['by_category']['software'] == 65.49, r
+          assert r['by_category']['equipment'] == 120.0, r
+          assert r['total'] == 185.49, r
+          print('PASS: expense.py add + report match expected totals')
+          "
+      - name: Verify date filtering in report
+        run: |
+          OUT=$(python expense.py report --from-date 2026-10-01 --json)
+          echo "$OUT"
+          echo "$OUT" | python -c "
+          import json, sys
+          r = json.load(sys.stdin)
+          assert r['count'] == 1, r
+          assert r['total'] == 15.5, r
+          print('PASS: date filtering works')
+          "
+      - name: Verify invalid date is rejected
+        run: |
+          set +e
+          python expense.py add 10 misc --date "not-a-date" 2>/tmp/err.txt
+          rc=$?
+          set -e
+          if [ "$rc" -eq 0 ]; then echo "FAIL: invalid date should exit non-zero"; exit 1; fi
+          grep -q "Invalid date" /tmp/err.txt || (echo "FAIL: wrong error message" && cat /tmp/err.txt && exit 1)
+          echo "PASS: invalid date rejected"
+      - name: Verify export-csv
+        run: |
+          python expense.py export-csv --out /tmp/expenses.csv
+          LINES=$(wc -l < /tmp/expenses.csv)
+          if [ "$LINES" -ne 4 ]; then echo "FAIL: expected 4 lines (header + 3), got $LINES"; exit 1; fi
+          echo "PASS: export-csv wrote expected line count"
