@@ -1,5 +1,6 @@
 # freelance-expense-cli
 
+![Test CLI](https://github.com/kleogeos/freelance-expense-cli/actions/workflows/test.yml/badge.svg)
 Track business expenses for tax reporting. No dependencies, no sign-up, no cloud account — just a local JSON file you can commit, back up, or diff.
 
 ```bash
