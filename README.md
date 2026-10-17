@@ -36,7 +36,7 @@ Global flag: `--file PATH` — use a different expenses file (default `expenses.
 
 ### Why a CLI instead of a spreadsheet or app
 
-No account, no subscription, nothing phoning home. The expense log is a plain JSON file — script against it, diff it, or hand the CSV export to whoever does your taxes. Pairs with [freelance-time-cli](https://github.com/kleogeos/freelance-time-cli) for billable hours and [freelance-invoice-cli](https://github.com/kleogeos/freelance-invoice-cli) for turning hours into an invoice.
+No account, no subscription, nothing phoning home. The expense log is a plain JSON file — script against it, diff it, or hand the CSV export to whoever does your taxes. Pairs with [freelance-time-cli](https://github.com/kleogeos/freelance-time-cli) for billable hours, [freelance-timesheet-to-invoice-cli](https://github.com/kleogeos/freelance-timesheet-to-invoice-cli) for turning those hours into an invoice.json, and [freelance-invoice-cli](https://github.com/kleogeos/freelance-invoice-cli) for rendering it.
 
 If you're a Russian-speaking freelancer sorting out self-employment/IP tax status: [self-employment tax estimator](https://kleogeos.github.io/freelancer-tools/self-employment-tax-estimator.html) and the [RU crypto payments guide](https://kleogeos.github.io/freelancer-tools/kak-frilanseru-prinimat-kripto-oplatu.html) cover the related gotchas.
 
