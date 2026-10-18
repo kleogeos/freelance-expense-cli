@@ -44,7 +44,7 @@ Free web tools (no install): [invoice generator](https://kleogeos.github.io/free
 
 Send the quote before the work starts: [freelance-proposal-cli](https://github.com/kleogeos/freelance-proposal-cli).
 
-Need the paperwork beyond tracking — proposals, contracts, invoices, late-payment emails, client scripts? [Freelancer Starter Kit ($15, crypto or Telegram Stars, no KYC)](https://kleogeos.github.io/freelancer-tools/kit.html?src=cli-expense)
+Need the paperwork beyond tracking — proposals, contracts, invoices, late-payment emails, client scripts? [Freelancer Starter Kit ($15, Telegram Stars or crypto, no KYC)](https://kleogeos.github.io/freelancer-tools/kit.html?src=cli-expense)
 
 Free and will stay free. If it saved you time: [tip with crypto](https://kleogeos.github.io/freelancer-tools/donate.html).
 
